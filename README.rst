@@ -24,27 +24,29 @@ You need PostgreSQL developent environment.  Then simply::
 
 Postgresql 16+
 --------------
-Include directories change in postgresql version 16 and above. This script for macOs shows fix required.
+Include directories change in postgresql version 16 and above, we must include `#include <varatt.h>`. 
+This script snippet for macOs shows the fix required.
 
-```
-brew install docutils # provides rst2html command
+::
 
-pushd /tmp && \
-wget --quiet https://github.com/markokr/pghashlib/archive/master.zip -O pghashlib.zip && \
-echo "unzip" && unzip -o pghashlib.zip &>/dev/null && \
-pushd pghashlib-master && \
-echo "hashlib install" && \
-if [ -e "$(find $(pg_config --includedir) -name 'varatt.h')" ]; then
-    # postgres 16+ fails for phhashlib
-    # build failure on postgres16 - https://stackoverflow.com/questions/77617997/how-to-set-varsize-and-set-varsize-in-postgresql-16
-    # append after match #include <fmgr.h> - src/pghashlib.h
-    line=$(grep -n '#include <fmgr.h>' src/pghashlib.h | cut -d: -f1)
-    sed -i '' "${line}s/^/#include <varatt.h>\n/" src/pghashlib.h
-fi &&
-echo "make" && make &>/dev/null && \
-echo "make install" && make install &>/dev/null && \
-echo "hashlib done"
-```
+  brew install docutils # provides rst2html command
+
+  pushd /tmp && \
+  wget --quiet https://github.com/markokr/pghashlib/archive/master.zip -O pghashlib.zip && \
+  echo "unzip" && unzip -o pghashlib.zip &>/dev/null && \
+  pushd pghashlib-master && \
+  echo "hashlib install" && \
+  if [ -e "$(find $(pg_config --includedir) -name 'varatt.h')" ]; then
+      # postgres 16+ fails for phhashlib
+      # build failure on postgres16 - https://stackoverflow.com/questions/77617997/how-to-set-varsize-and-set-varsize-in-postgresql-16
+      # append after match #include <fmgr.h> - src/pghashlib.h
+      line=$(grep -n '#include <fmgr.h>' src/pghashlib.h | cut -d: -f1)
+      sed -i '' "${line}s/^/#include <varatt.h>\n/" src/pghashlib.h
+  fi &&
+  echo "make" && make &>/dev/null && \
+  echo "make install" && make install &>/dev/null && \
+  echo "hashlib done"
+
 
 Functions
 ---------
