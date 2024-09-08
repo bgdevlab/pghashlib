@@ -101,17 +101,17 @@ void hlib_lookup2_hash(const void *data, size_t length, uint64_t *io)
    c += length;
    switch(len)              /* all the case statements fall through */
    {
-   case 11: c+=((uint32_t)k[10]<<24);
-   case 10: c+=((uint32_t)k[9]<<16);
-   case 9 : c+=((uint32_t)k[8]<<8);
+   case 11: c+=((uint32_t)k[10]<<24);	/* fall through */
+   case 10: c+=((uint32_t)k[9]<<16);	/* fall through */
+   case 9 : c+=((uint32_t)k[8]<<8);	/* fall through */
       /* the first byte of c is reserved for the length */
-   case 8 : b+=((uint32_t)k[7]<<24);
-   case 7 : b+=((uint32_t)k[6]<<16);
-   case 6 : b+=((uint32_t)k[5]<<8);
-   case 5 : b+=k[4];
-   case 4 : a+=((uint32_t)k[3]<<24);
-   case 3 : a+=((uint32_t)k[2]<<16);
-   case 2 : a+=((uint32_t)k[1]<<8);
+   case 8 : b+=((uint32_t)k[7]<<24);	/* fall through */
+   case 7 : b+=((uint32_t)k[6]<<16);	/* fall through */
+   case 6 : b+=((uint32_t)k[5]<<8);	/* fall through */
+   case 5 : b+=k[4];			/* fall through */
+   case 4 : a+=((uint32_t)k[3]<<24);	/* fall through */
+   case 3 : a+=((uint32_t)k[2]<<16);	/* fall through */
+   case 2 : a+=((uint32_t)k[1]<<8);	/* fall through */
    case 1 : a+=k[0];
      /* case 0: nothing left to add */
    }

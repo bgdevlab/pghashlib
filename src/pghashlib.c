@@ -1,6 +1,8 @@
 
 #include "pghashlib.h"
 
+#include <access/htup_details.h>
+
 #include "utils/builtins.h"
 
 PG_MODULE_MAGIC;
