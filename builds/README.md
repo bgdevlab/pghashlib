@@ -25,7 +25,6 @@ tar -cvzf postgresql${PGVERSION}-hashlib.rhel7.minimum-base.tar.gz $(find . -nam
 #
 alias ll='ls -la'
 
-unzip pghashlib.zip
 apt update
 apt install unzip make
 apt install --yes -q postgresql-server-dev-all build-essential libreadline-dev zlib1g-dev flex bison
@@ -41,8 +40,7 @@ wget https://ftp.postgresql.org/pub/source/v9.5.25/postgresql-9.5.25.tar.gz
 tar -xzf postgresql-9.5.25.tar.gz
 cd postgresql-9.5.25
 ./configure --prefix=/opt/postgresql-9.5
-make
-make install
+make && make install
 ls -l /opt/postgresql-9.5/bin/pg_config
 export PATH=/opt/postgresql-9.5/bin:$PATH
 which pg_config
