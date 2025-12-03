@@ -1,10 +1,14 @@
-FROM postgres:9.5
-
-LABEL authors="theodson"
-
 ARG PG_VER="95"
 ARG PG_VERSION="9.5"
 ARG PG_SRC_VERSION="9.5.25"
+
+FROM postgres:${PG_VERSION}
+
+ARG PG_VER
+ARG PG_VERSION
+ARG PG_SRC_VERSION
+
+LABEL authors="theodson"
 
 # debian stretch is archived as of 2025... change repositories to use archives
 RUN rm /etc/apt/sources.list.d/pgdg.list \
