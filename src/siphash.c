@@ -67,12 +67,12 @@ static uint64_t siphash24(const void *data, size_t len, uint64_t k0, uint64_t k1
 
 	m = (uint64_t)len << 56;
 	switch (len & 7) {
-	case 7: m |= (uint64_t)s[6] << 48;
-	case 6: m |= (uint64_t)s[5] << 40;
-	case 5: m |= (uint64_t)s[4] << 32;
-	case 4: m |= (uint64_t)s[3] << 24;
-	case 3: m |= (uint64_t)s[2] << 16;
-	case 2: m |= (uint64_t)s[1] <<  8;
+	case 7: m |= (uint64_t)s[6] << 48;	/* fall through */
+	case 6: m |= (uint64_t)s[5] << 40;	/* fall through */
+	case 5: m |= (uint64_t)s[4] << 32;	/* fall through */
+	case 4: m |= (uint64_t)s[3] << 24;	/* fall through */
+	case 3: m |= (uint64_t)s[2] << 16;	/* fall through */
+	case 2: m |= (uint64_t)s[1] <<  8;	/* fall through */
 	case 1: m |= (uint64_t)s[0]; break;
 	case 0: break;
 	}
