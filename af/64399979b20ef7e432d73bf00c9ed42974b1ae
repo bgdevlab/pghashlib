@@ -1,0 +1,14 @@
+builds/ubuntu/build_ubuntu.sh
+  h_6bb49d5e53f88a 28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "af64399979b20ef7e432d73bf00c9ed42974b1ae",
+  "prompts": {},
+  "humans": {
+    "h_6bb49d5e53f88a": {
+      "author": "Theo <theodson@gmail.com>"
+    }
+  }
+}
