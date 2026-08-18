@@ -25,7 +25,7 @@ docker build -f "$DOCKERFILE_PATH" -t "$IMAGE_TAG" "$REPO_ROOT"
 echo "Discovering artifact name from a one-off container"
 # Run a short-lived container only to list the artifact and get its basename
 ARTIFACT_NAME="$(
-  docker run --rm "$IMAGE_TAG" sh -lc "ls -1 /postgresql$PGVER-hashlib*.tar.gz 2>/dev/null | head -n1 | xargs -n1 basename"
+  docker run --rm "$IMAGE_TAG" sh -lc "ls -1 /postgresql$PGVER*-hashlib*.tar.gz 2>/dev/null | head -n1 | xargs -n1 basename"
 )"
 
 if [[ -z "$ARTIFACT_NAME" ]]; then
